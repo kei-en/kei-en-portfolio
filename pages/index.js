@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import About from '../components/about';
 import Intro from '../components/intro';
+import Projects from '../components/projects';
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <main className={"font-audiowide bg-black text-white"}>
         <Intro />
         <About />
+        <Projects />
       </main>
     </div>
   )
