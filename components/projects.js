@@ -1,23 +1,33 @@
-import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
+import { projectData } from '../data'
+import Project from './project';
 
 export default function Projects() {
+    const [portprojects, setPortProjects] = useState(projectData);
+    const [currentProject, setCurrentProject] = useState(portprojects[0]);
+
+    const projectChangeHandler = async (direction) => {
+        let currentIndex = portprojects.findIndex(portProject => portProject.id === currentProject.id)
+        if(direction === 'next-project') {
+            await setCurrentProject(portprojects[(currentIndex + 1) % portprojects.length])
+        }
+        if(direction === 'prev-project') {
+            if((currentIndex -1) % portprojects.length === -1) {
+                await setCurrentProject(portprojects[portprojects.length - 1])
+                return
+            }
+            await setCurrentProject(portprojects[(currentIndex - 1) % portprojects.length])
+        }
+    } 
+    
   return (
     <div className={"bg-white text-black w-[90%] m-auto p-2 rounded-lg"}>
         <h2 className={"font-monoton text-center text-3xl p-4"}>Projects</h2>
-        <div className={"flex flex-col"}>
-            <div className={"text-center"}>
-                <Image src='/sunnyside.png' alt='image of project' width={300} height={300} />
-            </div>
-            <div className={"p-2"}>
-                <h3 className={"text-2xl py-2"}>Sunnyside</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dolor laborum dicta voluptates officia aspernatur modi nisi, consequatur voluptatum alias adipisci aliquam temporibus minima id quasi mollitia deserunt enim? Labore facilis cupiditate quos vero sunt tempore! Vitae quas et quisquam perspiciatis, quaerat error iste repudiandae id obcaecati eveniet nobis quod.</p>
-            </div>
-        </div>
+        <Project currentProject={currentProject} />
         <div className={"flex justify-between"}>
-            <button><TiArrowLeftThick size={28} /> prev project</button>
-            <button><TiArrowRightThick size={28} /> next project</button>
+            <button onClick={() => projectChangeHandler('prev-project')}><TiArrowLeftThick size={28} /> prev project</button>
+            <button onClick={() => projectChangeHandler('next-project')}><TiArrowRightThick size={28} /> next project</button>
         </div>
     </div>
   )
