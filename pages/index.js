@@ -1,22 +1,43 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-filename-extension */
 import Head from 'next/head';
 import About from '../components/about';
+import Contact from '../components/contact';
 import Intro from '../components/intro';
 import Projects from '../components/projects';
 
 export default function Home() {
   return (
-    <div className={"w-full"}>
+    <div className={'w-full'}>
       <Head>
         <title>Kei En</title>
         <meta name="description" content="Portfolio website for Kei En" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className={"font-audiowide bg-black text-white"}>
+      <main className='font-audiowide bg-black text-white '>
         <Intro />
         <About />
         <Projects />
+        <Contact />
       </main>
     </div>
-  )
+  );
 }
