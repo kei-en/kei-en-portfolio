@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
-export default function Contact() {
+export default function Contact({ ref, inView }) {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
@@ -90,7 +91,12 @@ export default function Contact() {
   };
 
   return (
-    <div className={'bg-purple w-[86%] m-auto p-2 rounded-lg'}>
+    <motion.div 
+      ref={ref}
+      layout
+      style={inView ? {opacity: 1} : {position: "sticky", top: '6%', zIndex: 4}} 
+      className={'bg-purple w-[86%] m-auto p-2 rounded-lg'}
+    >
       <form
         onSubmit={handleSubmit}
         className="shadow-xl flex flex-col px-8 py-8"
@@ -204,6 +210,6 @@ export default function Contact() {
           )}
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }

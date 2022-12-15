@@ -5,6 +5,7 @@ import About from '../components/about';
 import Contact from '../components/contact';
 import Intro from '../components/intro';
 import Projects from '../components/projects';
+import { InView } from 'react-intersection-observer';
 
 export default function Home() {
   return (
@@ -32,12 +33,16 @@ export default function Home() {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <main className='font-audiowide bg-black text-white '>
-        <Intro />
-        <About />
-        <Projects />
-        <Contact />
-      </main>
+      <InView threshold={0.9}>
+      {({ ref, inView }) => (
+        <main className='font-audiowide bg-black text-white overscroll-auto'>
+          <Intro ref={ref} inView={inView} />
+          <About ref={ref} inView={inView} />
+          <Projects ref={ref} inView={inView} />
+          <Contact ref={ref} inView={inView} />
+        </main>
+        )}
+      </InView>
     </div>
   );
 }
