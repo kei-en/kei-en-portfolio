@@ -6,6 +6,7 @@ import Contact from '../components/contact';
 import Intro from '../components/intro';
 import Projects from '../components/projects';
 import { InView } from 'react-intersection-observer';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   return (
@@ -34,13 +35,18 @@ export default function Home() {
       </Head>
 
       <InView threshold={0.9}>
-      {({ ref, inView }) => (
-        <main className='font-audiowide bg-black text-white overscroll-auto'>
-          <Intro ref={ref} inView={inView} />
-          <About ref={ref} inView={inView} />
-          <Projects ref={ref} inView={inView} />
-          <Contact ref={ref} inView={inView} />
-        </main>
+        {({ ref, inView }) => (
+          <main
+            ref={ref}
+            className="font-space_mono bg-black text-white overscroll-auto"
+          >
+            <AnimatePresence>
+              <Intro key="intro" inView={inView} />
+              <About key="about" inView={inView} />
+              <Projects key="projects" inView={inView} />
+              <Contact key="contact" inView={inView} />
+            </AnimatePresence>
+          </main>
         )}
       </InView>
     </div>

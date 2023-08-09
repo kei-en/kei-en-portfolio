@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function Contact({ ref, inView }) {
+export default function Contact({ inView }) {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
@@ -92,7 +92,6 @@ export default function Contact({ ref, inView }) {
 
   return (
     <motion.div 
-      ref={ref}
       layout
       style={inView ? {opacity: 1} : {position: "sticky", top: '6%', zIndex: 4}} 
       className={'bg-purple w-[86%] m-auto p-2 rounded-lg'}
