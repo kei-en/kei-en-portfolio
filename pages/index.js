@@ -40,12 +40,10 @@ export default function Home() {
             ref={ref}
             className="font-space_mono bg-black text-white overscroll-auto"
           >
-            <AnimatePresence>
-              <Intro key="intro" inView={inView} />
-              <About key="about" inView={inView} />
-              <Projects key="projects" inView={inView} />
-              <Contact key="contact" inView={inView} />
-            </AnimatePresence>
+            <Intro key="intro" inView={inView} />
+            <About key="about" inView={inView} />
+            <Projects key="projects" inView={inView} />
+            <Contact key="contact" inView={inView} />
           </main>
         )}
       </InView>
