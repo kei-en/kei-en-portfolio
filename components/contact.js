@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Title from './sections/Title';
+import useAnimateIn from '../hooks/useAnimateIn';
+import { buttonAnimation } from '../animation';
+import Footer from './sections/Footer';
 
 export default function Contact({ inView }) {
   const [fullname, setFullname] = useState('');
@@ -90,25 +94,51 @@ export default function Contact({ inView }) {
     console.log(fullname, email, subject, message);
   };
 
+  // Page title
+  const textHdr = 'GET IN TOUCH';
+
+  // Label animation
+  const {
+    ref: labelRef,
+    ctrls: labelCtrls,
+    vars: labelVars,
+  } = useAnimateIn({
+    threshold: 0.4,
+    delay: 0.5,
+  });
+
+  // input animation
+  const { vars: inputVars } = useAnimateIn({
+    delay: 0.75,
+  });
+
   return (
-    <motion.div 
-      layout
-      style={inView ? {opacity: 1} : {position: "sticky", top: '6%', zIndex: 4}} 
+    <motion.div
+      layout="true"
+      style={
+        inView ? { opacity: 1 } : { position: 'sticky', top: '6%', zIndex: 4 }
+      }
       className={'bg-purple w-[86%] m-auto p-2 rounded-lg'}
     >
-      <form
+      <motion.form
         onSubmit={handleSubmit}
-        className="shadow-xl flex flex-col px-8 py-8"
+        className="shadow-xl flex flex-col px-8 py-8 lg:w-3/4 lg:ml-auto lg:mr-auto"
+        ref={labelRef}
+        initial="hidden"
+        animate={labelCtrls}
       >
-        <h1 className="text-3xl font-bold dark:text-gray-50 font-monoton">Get in touch</h1>
-
-        <label
+        <Title
+          title={textHdr}
+          className="font-monoton text-3xl p-4 text-center"
+        />
+        <motion.label
           htmlFor="fullname"
-          className="text-gray-500 font-light mt-8 dark:text-gray-50"
+          className="text-gray-200 font-light mt-8 dark:text-gray-50"
+          variants={labelVars}
         >
-          Name<span className="text-grey dark:text-gray-50">*</span>
-        </label>
-        <input
+          Name<span className="text-gray-300 dark:text-gray-50">*</span>
+        </motion.label>
+        <motion.input
           type="text"
           value={fullname}
           onChange={(e) => {
@@ -116,18 +146,20 @@ export default function Contact({ inView }) {
           }}
           name="fullname"
           className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          variants={inputVars}
         />
         {errors?.fullname && (
-          <p className="text-grey">Fullname cannot be empty.</p>
+          <p className="text-yellow-600">Name cannot be empty.</p>
         )}
 
-        <label
+        <motion.label
           htmlFor="email"
-          className="text-gray-500 font-light mt-4 dark:text-gray-50"
+          className="text-gray-200 font-light mt-4 dark:text-gray-50"
+          variants={labelVars}
         >
-          E-mail<span className="text-grey">*</span>
-        </label>
-        <input
+          E-mail<span className="text-gray-300">*</span>
+        </motion.label>
+        <motion.input
           type="email"
           name="email"
           value={email}
@@ -135,18 +167,20 @@ export default function Contact({ inView }) {
             setEmail(e.target.value);
           }}
           className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          variants={inputVars}
         />
         {errors?.email && (
-          <p className="text-grey">Email cannot be empty.</p>
+          <p className="text-yellow-600">Email cannot be empty.</p>
         )}
 
-        <label
+        <motion.label
           htmlFor="subject"
-          className="text-gray-500 font-light mt-4 dark:text-gray-50"
+          className="text-gray-200 font-light mt-4 dark:text-gray-50"
+          variants={labelVars}
         >
-          Subject<span className="text-grey">*</span>
-        </label>
-        <input
+          Subject<span className="text-gray-300">*</span>
+        </motion.label>
+        <motion.input
           type="text"
           name="subject"
           value={subject}
@@ -154,31 +188,35 @@ export default function Contact({ inView }) {
             setSubject(e.target.value);
           }}
           className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          variants={inputVars}
         />
         {errors?.subject && (
-          <p className="text-grey">Subject cannot be empty.</p>
+          <p className="text-yellow-600">Subject cannot be empty.</p>
         )}
-        <label
+        <motion.label
           htmlFor="message"
-          className="text-gray-500 font-light mt-4 dark:text-gray-50"
+          className="text-gray-200 font-light mt-4 dark:text-gray-50"
+          variants={labelVars}
         >
-          Message<span className="text-grey">*</span>
-        </label>
-        <textarea
+          Message<span className="text-gray-300">*</span>
+        </motion.label>
+        <motion.textarea
           name="message"
           value={message}
           onChange={(e) => {
             setMessage(e.target.value);
           }}
           className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
-        ></textarea>
+          variants={inputVars}
+        ></motion.textarea>
         {errors?.message && (
-          <p className="text-grey">Message body cannot be empty.</p>
+          <p className="text-yellow-600">Message body cannot be empty.</p>
         )}
         <div className="flex flex-row items-center justify-start">
-          <button
+          <motion.button
             type="submit"
             className="px-10 mt-8 py-2 bg-honey text-[#222] font-light rounded-md text-lg flex flex-row items-center"
+            variants={buttonAnimation}
           >
             {buttonText}
             <svg
@@ -194,7 +232,7 @@ export default function Contact({ inView }) {
                 fill="currentColor"
               />
             </svg>
-          </button>
+          </motion.button>
         </div>
         <div className="text-left">
           {showSuccessMessage && (
@@ -208,7 +246,8 @@ export default function Contact({ inView }) {
             </p>
           )}
         </div>
-      </form>
+      </motion.form>
+      <Footer />
     </motion.div>
   );
 }
