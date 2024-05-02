@@ -15,7 +15,7 @@ export default function Intro({ inView }) {
         'h-screen w-full bg-black flex flex-col justify-around align-middle'
       }
     >
-      <div className="overflow-hidden  pt-16">
+      <div className="overflow-hidden pt-16">
         <motion.h1
           initial={{ y: -200 }}
           animate={{
@@ -26,7 +26,14 @@ export default function Intro({ inView }) {
         >
           Karanja
         </motion.h1>
-        <h1 className="text-center font-extrabold text-4xl font-monoton">J.</h1>
+        <motion.h1
+          className="text-center font-bold text-4xl font-monoton"
+          initial="hidden"
+          animate="visible"
+          variants={fade}
+        >
+          J.
+        </motion.h1>
         <motion.h1
           initial={{ y: 200 }}
           animate={{
@@ -41,7 +48,7 @@ export default function Intro({ inView }) {
       <motion.div
         variants={imageAnim}
         initial="hidden"
-        animate="show"
+        animate="visible"
         className={'text-center'}
       >
         <Image
@@ -55,17 +62,17 @@ export default function Intro({ inView }) {
       <motion.h3
         variants={fade}
         initial="hidden"
-        animate="show"
+        animate="visible"
         className={'text-center text-2xl'}
       >
-        web developer & designer
+        software engineer
       </motion.h3>
       <div className={'flex justify-center overflow-hidden'}>
         <motion.button
           initial={{ y: -100 }}
           animate={{
             y: 0,
-            transition: { type: 'spring', bounce: 0.5, delay: 0.75 },
+            transition: { type: 'spring', bounce: 0.5, delay: 0.9 },
           }}
         >
           <TiArrowDownThick size={42} />
