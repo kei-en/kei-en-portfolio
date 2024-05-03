@@ -1,91 +1,117 @@
-import React, { useState } from 'react';
-import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti';
-import { projectData } from '../data';
-import Project from './project';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-export default function Projects({ inView }) {
-  const [portprojects, setPortProjects] = useState(projectData);
-  const [currentProject, setCurrentProject] = useState(portprojects[0]);
+import { projectQuery } from '../data';
 
-  const projectChangeHandler = (direction) => {
-    let currentIndex = portprojects.findIndex(
-      (portProject) => portProject.id === currentProject.id
-    );
-    if (direction === 'next-project') {
-      setCurrentProject(portprojects[(currentIndex + 1) % portprojects.length]);
-    }
-    if (direction === 'prev-project') {
-      if ((currentIndex - 1) % portprojects.length === -1) {
-        setCurrentProject(portprojects[portprojects.length - 1]);
-        return;
-      }
-      setCurrentProject(portprojects[(currentIndex - 1) % portprojects.length]);
+import Title from './sections/Title';
+import { CardBody, CardContainer, CardItem } from './sections/3dCard';
+import { useRouter } from 'next/router';
+
+const CARD_OFFSET = 10;
+const SCALE_FACTOR = 0.06;
+
+function Projects({
+  inView,
+  offset = CARD_OFFSET,
+  scaleFactor = SCALE_FACTOR,
+}) {
+  const router = useRouter();
+
+  const [cards, setCards] = useState(projectQuery || []);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const textHdr = 'Projects';
+
+  const flipCard = (direction) => {
+    if (!cards.length) return; // Error handling for empty array
+
+    if (direction === 'next') {
+      setCurrentIndex((currentIndex + 1) % cards.length);
+    } else if (direction === 'prev') {
+      setCurrentIndex((currentIndex - 1 + cards.length) % cards.length);
     }
   };
 
   return (
-    <motion.div
-      layout
+    <div
+      layout="true"
       style={
         inView ? { opacity: 1 } : { position: 'sticky', top: '10%', zIndex: 3 }
       }
       className={
-        'h-[calc(100vh-7rem)] overflow-hidden bg-white text-black w-[90%] m-auto mb-20 p-2 rounded-lg aspect-video'
+        'relative h-[calc(100vh-7rem)] overflow-hidden bg-white text-black w-[90%] m-auto mb-20 p-2 rounded-lg aspect-video'
       }
     >
-      <h2 className={'font-monoton text-center text-3xl p-4'}>Projects</h2>
-      {/* <div className="flex flex-col"> */}
-      <Project currentProject={currentProject} />
-      <div className={'flex justify-between p-4'}>
+      <Title title={textHdr} />
+      <motion.div
+        className="absolute dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mx-auto mt-24 md:mt-28 left-0 right-0 hover:cursor-pointer"
+        style={{
+          transformOrigin: 'top center',
+        }}
+        animate={{
+          top: currentIndex * -offset,
+          scale: 1 - currentIndex * scaleFactor,
+          zIndex: cards.length - currentIndex,
+        }}
+        onClick={() => router.push(`/test/${cards[currentIndex].project}`)}
+      >
+        <SingleProject currentProject={cards[currentIndex]} />
+      </motion.div>
+      <div className="flex justify-between items-center absolute top-28 md:top-1/2 right-0 left-0 mx-auto w-full lg:md-1/2 z-50">
         <button
-          className="flex"
-          onClick={() => projectChangeHandler('prev-project')}
+          className="px-4 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-50 dark:text-black text-black hover:bg-honey hover:underline text-sm font-bold"
+          onClick={() => flipCard('prev')}
+          aria-label="Previous project"
         >
-          <svg
-            version="1.0"
-            xmlns="http://www.w3.org/2000/svg"
-            width="28.000000pt"
-            height="40.000000pt"
-            viewBox="0 0 181 200"
-            preserveAspectRatio="xMidYMid meet"
-            className="fill-black hover:fill-purple"
-          >
-            <g transform="translate(0,200) scale(0.1,-0.1)" stroke="none">
-              <path
-                d="M947 1880 c-51 -56 -124 -152 -273 -359 -148 -207 -283 -329 -503
-                        -457 -91 -53 -117 -74 -93 -74 15 0 193 -110 269 -166 117 -86 205 -176 299
-                        -305 202 -277 263 -356 307 -404 l46 -50 1 353 0 352 375 0 c233 0 375 4 375
-                        10 0 5 -48 108 -107 230 l-106 220 -268 0 -269 0 -2 352 -3 352 -48 -54z"
-              />
-            </g>
-          </svg>
+          ← Back
         </button>
         <button
-          className="flex flex-row-reverse"
-          onClick={() => projectChangeHandler('next-project')}
+          className="px-4 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-100 dark:text-black text-black hover:bg-honey hover:underline text-sm font-bold"
+          onClick={() => flipCard('next')}
+          aria-label="Next project"
         >
-          <svg
-            version="1.0"
-            xmlns="http://www.w3.org/2000/svg"
-            width="28.000000pt"
-            height="40.000000pt"
-            viewBox="0 0 181 200"
-            preserveAspectRatio="xMidYMid meet"
-            className="fill-black hover:fill-purple rotate-180"
-          >
-            <g transform="translate(0,200) scale(0.1,-0.1)" stroke="none">
-              <path
-                d="M947 1880 c-51 -56 -124 -152 -273 -359 -148 -207 -283 -329 -503
-                        -457 -91 -53 -117 -74 -93 -74 15 0 193 -110 269 -166 117 -86 205 -176 299
-                        -305 202 -277 263 -356 307 -404 l46 -50 1 353 0 352 375 0 c233 0 375 4 375
-                        10 0 5 -48 108 -107 230 l-106 220 -268 0 -269 0 -2 352 -3 352 -48 -54z"
-              />
-            </g>
-          </svg>
+          Forth →
         </button>
       </div>
-      {/* </div> */}
-    </motion.div>
+    </div>
   );
 }
+
+export function SingleProject({ currentProject }) {
+  return (
+    <CardContainer className="inter-var">
+      <CardBody className="bg-zinc-900 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-[80vw] sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-xl font-bold text-white dark:text-white"
+        >
+          {currentProject.data.name}
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-neutral-200 text-xs md:text-sm max-w-sm mt-2 dark:text-neutral-300 "
+        >
+          {currentProject.data.intro}
+        </CardItem>
+        <CardItem
+          translateZ="100"
+          rotateX={10}
+          rotateZ={-5}
+          className="w-full mt-4"
+        >
+          <Image
+            src={currentProject.data.meta_image}
+            height="768"
+            width="1080"
+            className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+            alt={currentProject.data.name}
+          />
+        </CardItem>
+      </CardBody>
+    </CardContainer>
+  );
+}
+
+export default Projects;
