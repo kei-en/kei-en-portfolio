@@ -30,7 +30,7 @@ export default function About({ inView }) {
     >
       <Title title={textHdr} />
       <div className="h-full lg:pt-5 pb-10">
-        <motion.div
+        {/* <motion.div
           className="lg:ml-auto lg:mr-auto lg:w-1/2 text-center md:text-lg text-sm leading-6"
           ref={textRef}
           initial="hidden"
@@ -39,7 +39,7 @@ export default function About({ inView }) {
         >
           <motion.span>Yoh, I'm</motion.span>
           <Typewriter />
-        </motion.div>
+        </motion.div> */}
         <motion.p
           className="lg:ml-auto lg:mr-auto lg:w-1/2 text-center md:text-lg text-sm leading-6"
           ref={textRef}
