@@ -6,7 +6,6 @@ import Contact from '../components/contact';
 import Intro from '../components/intro';
 import Projects from '../components/projects';
 import { InView } from 'react-intersection-observer';
-import { AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   return (

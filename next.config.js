@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
   swcMinify: true,
-}
+};
 
 module.exports = {
   webpack(config) {
@@ -10,12 +11,11 @@ module.exports = {
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
-const withTM = require('next-transpile-modules')(['three'])
-module.exports = withTM()
-
+const withTM = require('next-transpile-modules')(['three']);
+module.exports = withTM(nextConfig);
