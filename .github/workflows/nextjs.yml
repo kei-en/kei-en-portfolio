@@ -49,6 +49,10 @@ jobs:
         with:
           node-version: "18.17.1"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Set Yarn Version
+        run: corepack prepare yarn@3.6.1 --activate
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
