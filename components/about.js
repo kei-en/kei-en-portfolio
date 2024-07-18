@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import Title from './sections/Title';
 import useAnimateIn from '../hooks/useAnimateIn';
-import Typewriter from './sections/Typewriter';
+// import Typewriter from './sections/Typewriter';
 
 export default function About({ inView }) {
   const textHdr = 'Who?';
