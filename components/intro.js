@@ -53,7 +53,7 @@ export default function Intro({ inView }) {
       >
         <Image
           className={'rounded-full'}
-          src="/kei-en-portfolio/joe1.jpg"
+          src="/joe1.jpg"
           alt="Image: Kei En"
           width={250}
           height={250}

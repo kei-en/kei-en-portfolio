@@ -16,11 +16,7 @@ export default function Nav() {
   return (
     <div className="fixed top-4 left-4 right-4 z-50 flex justify-between align-middle pr-6">
       <Link href="/">
-        <Image
-          src="/kei-en-portfolio/kei-en-logo.png"
-          width={100}
-          height={100}
-        />
+        <Image src="/kei-en-logo.png" width={100} height={100} />
       </Link>
       <div className="flex">
         <button onClick={handleClick}>
