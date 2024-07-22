@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/kei-en-portfolio',
+  basePath: '/',
   images: {
     unoptimized: true,
   },
