@@ -54,7 +54,7 @@ function Projects({
           scale: 1 - currentIndex * scaleFactor,
           zIndex: cards.length - currentIndex,
         }}
-        onClick={() => router.push(`/test/${cards[currentIndex].project}`)}
+        onClick={() => router.push(`/projects/${cards[currentIndex].project}`)}
       >
         <SingleProject currentProject={cards[currentIndex]} />
       </motion.div>

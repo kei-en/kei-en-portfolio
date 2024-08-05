@@ -98,32 +98,6 @@ export default function Nav() {
                 </p>
               </Link>
             </li>
-            <li
-              className={`${
-                router.pathname === '/projects/hbnb' ? 'underline italic' : ''
-              } hover:underline cursor-pointer py-1`}
-            >
-              <Link href="/projects/hbnb">
-                <p className="flex">
-                  <FaRegFile />
-                  &nbsp;hbnb
-                </p>
-              </Link>
-            </li>
-            <li
-              className={`${
-                router.pathname === '/projects/cpature'
-                  ? 'underline italic'
-                  : ''
-              } hover:underline cursor-pointer py-1`}
-            >
-              <Link href="/projects/capture">
-                <p className="flex">
-                  <FaRegFile />
-                  &nbsp;capture
-                </p>
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
