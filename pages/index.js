@@ -11,8 +11,11 @@ export default function Home() {
   return (
     <div className={'w-full'}>
       <Head>
-        <title>Kei En</title>
-        <meta name="description" content="Portfolio website for Kei En" />
+        <title>Kei eN</title>
+        <meta
+          name="description"
+          content="Portfolio website for Karanja J. Njuguna"
+        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"

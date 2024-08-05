@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 import Title from './sections/Title';
 import useAnimateIn from '../hooks/useAnimateIn';
-// import Typewriter from './sections/Typewriter';
 
 export default function About({ inView }) {
   const textHdr = 'Who?';
@@ -30,16 +29,6 @@ export default function About({ inView }) {
     >
       <Title title={textHdr} />
       <div className="h-full lg:pt-5 pb-10">
-        {/* <motion.div
-          className="lg:ml-auto lg:mr-auto lg:w-1/2 text-center md:text-lg text-sm leading-6"
-          ref={textRef}
-          initial="hidden"
-          animate={textCtrls}
-          variants={textVars}
-        >
-          <motion.span>Yoh, I'm</motion.span>
-          <Typewriter />
-        </motion.div> */}
         <motion.p
           className="lg:ml-auto lg:mr-auto lg:w-1/2 text-center md:text-lg text-sm leading-6"
           ref={textRef}

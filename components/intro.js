@@ -9,7 +9,7 @@ export default function Intro({ inView }) {
     <motion.div
       layout
       style={
-        inView ? { opacity: 1 } : { position: 'sticky', top: 0, zIndex: 1 }
+        inView ? { opacity: 0 } : { position: 'sticky', top: 0, zIndex: 1 }
       }
       className={
         'h-screen w-full bg-black flex flex-col justify-around align-middle'
@@ -57,6 +57,7 @@ export default function Intro({ inView }) {
           alt="Image: Kei En"
           width={250}
           height={250}
+          priority
         />
       </motion.div>
       <motion.h3
