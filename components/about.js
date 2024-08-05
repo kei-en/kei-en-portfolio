@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 import Title from './sections/Title';
 import useAnimateIn from '../hooks/useAnimateIn';
+import Typewriter from 'typewriter-effect';
 
 export default function About({ inView }) {
   const textHdr = 'Who?';
@@ -29,6 +30,18 @@ export default function About({ inView }) {
     >
       <Title title={textHdr} />
       <div className="h-full lg:pt-5 pb-10">
+        <span className="text-xl">Hey, I'm</span>
+        <Typewriter
+          className="my-4"
+          options={{
+            strings: [
+              '<a href="https://linkedin.com/in/kei-en" style="color: #efcb48;" target="_blank">@kei-en(linkedin)</a>',
+              '<a href="https://github.com/kei-en" style="color: #efcb48;" target="_blank">@kei-en(github)</a>',
+            ],
+            autoStart: true,
+            loop: true,
+          }}
+        />
         <motion.p
           className="lg:ml-auto lg:mr-auto lg:w-1/2 text-center md:text-lg text-sm leading-6"
           ref={textRef}
@@ -36,13 +49,8 @@ export default function About({ inView }) {
           animate={textCtrls}
           variants={textVars}
         >
-          <span className="text-xl">
-            Hey, I'm Kei En&#8758;&#10217;
-            <br />
-          </span>{' '}
-          I'm a web developer and designer - here's a bit more about my
-          background. I'm available for web projects and based in Nairobi,
-          Kenya.
+          A web developer and designer - here's a bit more about my background.
+          I'm available for web projects and based in Nairobi, Kenya.
           <br />I am skilled in developing user interfaces for web apps that are
           easy to use and visually appealing while being optimised for both
           desktop and mobile devices. I appreciate working with cross-functional
