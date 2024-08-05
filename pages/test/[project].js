@@ -32,7 +32,7 @@ export default function ProjectPage({ projectData, projectContent }) {
   return (
     <>
       <Head>
-        <title>{projectData.meta_title} - Kei En</title>
+        <title>{projectData.meta_title}</title>
         <meta name="description" content={projectData.meta_description} />
         <meta
           property="og:title"
@@ -46,7 +46,7 @@ export default function ProjectPage({ projectData, projectContent }) {
         />
         <meta
           property="og:site_name"
-          content="Joseph Collicoat"
+          content="Karanja J Njuguna"
           key="ogsitename"
         />
         <meta
@@ -54,11 +54,7 @@ export default function ProjectPage({ projectData, projectContent }) {
           content={projectData.meta_image}
           key="ogimage"
         />
-        <meta
-          property="og:url"
-          content="https://karanjajnjuguna.com"
-          key="ogtitle"
-        />
+        <meta property="og:url" content="https://k7n.tech" key="ogtitle" />
         <link rel="icon" href="/favicon.ico" key="" />
       </Head>
       <Layout

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ParallaxProvider>
       <AnimatePresence
-        mode="wait"
+        mode="sync"
         onExitComplete={() =>
           typeof window !== 'undefined' && window.scrollTo(0, 0)
         }
