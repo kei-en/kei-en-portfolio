@@ -24,24 +24,24 @@ export default function ResponsiveImagePreview({ data }) {
 
   const imageData = {
     desktop: {
-      src: data.devices.image_desktop,
-      width: 1024,
-      height: 768,
+      src: data.devices.desktop.image,
+      width: data.devices.desktop.width,
+      height: data.devices.desktop.height,
     },
     tablet: {
-      src: data.devices.image_tablet,
-      width: 768,
-      height: 1024,
+      src: data.devices.tablet.image,
+      width: data.devices.tablet.width,
+      height: data.devices.tablet.height,
     },
     mobile: {
-      src: data.devices.image_mobile,
-      width: 375,
-      height: 667,
+      src: data.devices.mobile.image,
+      width: data.devices.mobile.width,
+      height: data.devices.mobile.height,
     },
     all: {
       src: data.devices.image,
-      width: 375,
-      height: 375,
+      width: data.devices.width,
+      height: data.devices.height,
     },
   };
 
