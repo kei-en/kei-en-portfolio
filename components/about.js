@@ -35,8 +35,8 @@ export default function About({ inView }) {
           className="my-4"
           options={{
             strings: [
-              '<a href="https://linkedin.com/in/kei-en" style="color: #efcb48;" target="_blank">@kei-en(linkedin)</a>',
-              '<a href="https://github.com/kei-en" style="color: #efcb48;" target="_blank">@kei-en(github)</a>',
+              '<a href="https://linkedin.com/in/kei-en" style="color: #efcb48; text-decoration-line: underline;" target="_blank">@kei-en(linkedin)</a>',
+              '<a href="https://github.com/kei-en" style="color: #efcb48; text-decoration-line: underline;" target="_blank">@kei-en(github)</a>',
             ],
             autoStart: true,
             loop: true,
