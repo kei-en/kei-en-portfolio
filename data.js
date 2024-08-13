@@ -11,7 +11,7 @@ export const projectData = [
   {
     id: uuidv4(),
     name: 'Sunnyside',
-    cover: '/muimbaji-hero-image.png',
+    cover: '/muimbaji-hero-image.webp',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dolor laborum dicta voluptates officia aspernatur modi nisi, consequatur voluptatum alias adipisci aliquam temporibus minima id quasi mollitia deserunt enim? Labore facilis cupiditate quos vero sunt tempore!',
   },
@@ -171,7 +171,7 @@ export const projectQuery = [
       },
       meta_description:
         'A project aimed at making an artist showcase website, making it a onestop shop for anything related to the artist',
-      meta_image: '/muimbaji-hero-image.png',
+      meta_image: '/muimbaji-hero-image.webp',
       name: 'Muimbaji',
       intro:
         'The goal of this project was to create a comprehensive website for an artist showcase. The site serves as the primary resource for all information about the artist, featuring integrated audio and video players, as well as an online store where fans can purchase products. It centralizes all relevant information about the artist in one convenient location.',
