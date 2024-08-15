@@ -8,7 +8,7 @@ export default function Footer() {
     ctrls: linkCtrls,
     vars: linkVars,
   } = useAnimateIn({
-    delay: 2,
+    delay: 1,
   });
 
   return (
@@ -21,7 +21,7 @@ export default function Footer() {
           variants={linkVars}
           className="uppercase underline underline-offset-2 hover:overline"
         >
-          <a href="#">Resume</a>
+          <a href="#">Resume/CV</a>
         </motion.li>
         <motion.li
           ref={linkRef}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 export default function ResponsiveImagePreview({ data }) {
   const [device, setDevice] = useState('desktop');
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     const updateDevice = () => {
@@ -15,6 +16,7 @@ export default function ResponsiveImagePreview({ data }) {
         setDevice('mobile');
       }
     };
+    setWindowWidth(window.innerWidth > 0 ? window.innerWidth : screen.width);
 
     updateDevice();
     window.addEventListener('resize', updateDevice);
@@ -89,13 +91,22 @@ export default function ResponsiveImagePreview({ data }) {
       )}
       <div className="mt-5">
         <div
-          className={`${
-            device === 'desktop'
-              ? 'w-4/5'
-              : device === 'tablet'
-              ? 'w-3/5'
-              : 'w-2/5'
-          } mx-auto`}
+          className={`
+            ${
+              // device === 'tablet'
+              //   ? 'w-3/5'
+              //   : device === 'mobile' && windowWidth >= 600
+              //   ? 'w-2/5'
+              //   : 'w-3/5'
+              windowWidth >= 600
+                ? device === 'desktop'
+                  ? 'w-4/5'
+                  : device === 'tablet'
+                  ? 'w-2/5'
+                  : 'w-1/5'
+                : device === 'mobile' && 'w-3/5'
+            } 
+            mx-auto`}
         >
           {src && src.includes('.svg') ? (
             // eslint-disable-next-line @next/next/no-img-element

@@ -14,7 +14,7 @@ export default function Nav() {
   };
 
   return (
-    <div className="fixed bg-gray-100/5 rounded-md top-4 left-4 right-4 z-50 flex justify-between align-middle pr-6">
+    <div className="fixed bg-gray-100/5 backdrop-blur-sm rounded-md top-4 left-4 right-4 z-50 flex justify-between align-middle pr-6">
       <Link href="/">
         <Image src="/kei-en-logo.png" width={100} height={100} />
       </Link>
@@ -74,13 +74,15 @@ export default function Nav() {
           <ul className="ml-8">
             <li
               className={`${
-                router.pathname === '/projects/mtindo' ? 'underline italic' : ''
+                router.pathname === '/projects/chartske'
+                  ? 'underline italic'
+                  : ''
               } hover:underline cursor-pointer py-1`}
             >
-              <Link href="/projects/mtindo">
+              <Link href="/projects/chartske">
                 <p className="flex">
                   <FaRegFile />
-                  &nbsp;mtindo
+                  &nbsp;chartske
                 </p>
               </Link>
             </li>
