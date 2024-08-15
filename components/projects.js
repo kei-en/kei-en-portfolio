@@ -40,7 +40,7 @@ function Projects({
         inView ? { opacity: 1 } : { position: 'sticky', top: '10%', zIndex: 3 }
       }
       className={
-        'relative h-[calc(100vh-7rem)] overflow-hidden bg-white text-black w-[90%] m-auto mb-20 p-2 rounded-lg aspect-video'
+        'relative h-[calc(100vh-7rem)] overflow-hidden bg-white dark:bg-white text-black w-[90%] m-auto mb-20 p-2 rounded-lg aspect-video'
       }
     >
       <Title title={textHdr} />
@@ -107,6 +107,7 @@ export function SingleProject({ currentProject }) {
             width="1080"
             className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
             alt={currentProject.data.name}
+            priority
           />
         </CardItem>
       </CardBody>

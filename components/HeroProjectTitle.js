@@ -51,7 +51,7 @@ export default function HeroProjectTitle({ title }) {
   const yOffset = isSmall ? [`40px`, `-40px`] : [`80px`, `-80px`];
 
   return (
-    <Parallax y={yOffset} className=" col-span-full md:col-[4_/_21]">
+    <Parallax y={yOffset} className="col-span-full md:col-[4_/_21]">
       <h1
         aria-label={title}
         role="heading"

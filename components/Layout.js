@@ -25,7 +25,7 @@ export default function Layout({ children, background, text }) {
   return (
     <motion.main
       style={{ backgroundColor: background, color: text }}
-      className="min-h-screen pt-60 pb-40 w-full bg-primaryBg"
+      className="min-h-screen overflow-x-hidden pt-60 pb-40 w-screen bg-primaryBg"
       variants={variants}
       inlist="hidden"
       animate="visible"
