@@ -5,12 +5,13 @@ import Layout from '../../components/Layout';
 import HeroProject from '../../components/HeroProject';
 import ContentMapper from '../../components/ContentMapper';
 import Nav from '../../components/sections/Nav';
+// import ContactForm from '../../components/contact-new';
 
 export async function getStaticPaths() {
   return {
     paths: [
+      { params: { project: 'chartske' } },
       { params: { project: 'muimbaji' } },
-      { params: { project: 'mtindo' } },
     ],
     fallback: false,
   };
@@ -64,6 +65,7 @@ export default function ProjectPage({ projectData, projectContent }) {
         <Nav />
         <HeroProject data={projectData} />
         <ContentMapper sections={projectContent} />
+        {/* <ContactForm /> */}
       </Layout>
     </>
   );

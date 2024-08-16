@@ -40,7 +40,7 @@ export default function Home() {
         {({ ref, inView }) => (
           <main
             ref={ref}
-            className="font-space_mono bg-black text-white overscroll-auto"
+            className="font-space_mono bg-black text-white overscroll-y-auto overscroll-x-none"
           >
             <Intro key="intro" inView={inView} />
             <About key="about" inView={inView} />
