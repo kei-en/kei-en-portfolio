@@ -93,11 +93,6 @@ export default function ResponsiveImagePreview({ data }) {
         <div
           className={`
             ${
-              // device === 'tablet'
-              //   ? 'w-3/5'
-              //   : device === 'mobile' && windowWidth >= 600
-              //   ? 'w-2/5'
-              //   : 'w-3/5'
               windowWidth >= 600
                 ? device === 'desktop'
                   ? 'w-4/5'

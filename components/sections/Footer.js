@@ -12,7 +12,7 @@ export default function Footer() {
   });
 
   return (
-    <div className="p-2 lg:w-3/4 lg:ml-auto lg:mr-auto">
+    <div className="p-2 lg:w-3/4 lg:ml-auto lg:mr-auto text-stone-500 dark:text-stone-500">
       <ul className="w-full inline-flex justify-around">
         <motion.li
           ref={linkRef}

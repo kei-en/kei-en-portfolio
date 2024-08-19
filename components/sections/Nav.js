@@ -16,17 +16,13 @@ export default function Nav() {
   return (
     <div className="fixed bg-gray-100/5 backdrop-blur-sm rounded-md top-4 left-4 right-4 z-50 flex justify-between align-middle pr-6">
       <Link href="/">
-        <Image src="/kei-en-logo.png" width={100} height={100} />
+        <a>
+          <Image src="/kei-en-logo.png" width={100} height={100} />
+        </a>
       </Link>
       <div className="flex">
         <button onClick={handleClick}>
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 20 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="30" height="30" viewBox="0 0 20 18" fill="none">
             <rect
               x="4"
               width="12"
