@@ -52,11 +52,14 @@ export default function Intro({ inView }) {
         className={'text-center'}
       >
         <Image
-          className={'rounded-full'}
-          src="/joe1.jpg"
+          className="rounded-full -rotate-[28deg]"
+          src="/joe4.webp"
           alt="Image: Kei En"
           width={250}
           height={250}
+          quality={100}
+          blurDataURL="/joe4.webp"
+          placeholder="blur"
           priority
         />
       </motion.div>
