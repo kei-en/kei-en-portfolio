@@ -5,7 +5,7 @@ import Layout from '../../components/Layout';
 import HeroProject from '../../components/HeroProject';
 import ContentMapper from '../../components/ContentMapper';
 import Nav from '../../components/sections/Nav';
-// import ContactForm from '../../components/contact-new';
+import Contact from '../../components/contact';
 
 export async function getStaticPaths() {
   return {
@@ -65,7 +65,7 @@ export default function ProjectPage({ projectData, projectContent }) {
         <Nav />
         <HeroProject data={projectData} />
         <ContentMapper sections={projectContent} />
-        {/* <ContactForm /> */}
+        <Contact />
       </Layout>
     </>
   );
