@@ -130,7 +130,7 @@ export default function Contact({ inView }) {
       >
         <Title
           title={textHdr}
-          className="font-monoton text-3xl p-4 text-center"
+          className="font-monoton text-3xl p-4 text-center text-white"
         />
         <motion.label
           htmlFor="name"
