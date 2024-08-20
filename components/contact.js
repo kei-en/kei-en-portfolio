@@ -4,14 +4,10 @@ import Title from './sections/Title';
 import useAnimateIn from '../hooks/useAnimateIn';
 import { buttonAnimation } from '../animation';
 import Footer from './sections/Footer';
+import useContactForm from '../hooks/useContactForm';
 
 export default function Contact({ inView }) {
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
-
-  //   Form validation
+  const { values, setValues, handleChange } = useContactForm();
   const [errors, setErrors] = useState({});
 
   //   Setting button text
@@ -20,78 +16,83 @@ export default function Contact({ inView }) {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
 
-  const handleValidation = () => {
-    let tempErrors = {};
+  const validateForm = () => {
+    let errors = {};
     let isValid = true;
 
-    if (fullname.length <= 0) {
-      tempErrors['fullname'] = true;
-      isValid = false;
-    }
-    if (email.length <= 0) {
-      tempErrors['email'] = true;
-      isValid = false;
-    }
-    if (subject.length <= 0) {
-      tempErrors['subject'] = true;
-      isValid = false;
-    }
-    if (message.length <= 0) {
-      tempErrors['message'] = true;
+    if (!values.name) {
+      errors.name = 'Name is required!';
       isValid = false;
     }
 
-    setErrors({ ...tempErrors });
-    console.log('erors', errors);
+    if (!values.email) {
+      errors.email = 'Email is required!';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      errors.email = 'Email is invalid';
+      isValid = false;
+    }
+
+    if (!values.subject) {
+      errors.subject = 'Subject is required!';
+      isValid = false;
+    }
+
+    if (!values.message) {
+      errors.message = 'Message is required!';
+      isValid = false;
+    }
+
+    setErrors(errors);
     return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let isValidForm = handleValidation();
+    let isValidForm = validateForm();
 
     if (isValidForm) {
       setButtonText('Sending');
-      const res = await fetch('/api/sendgrid', {
-        body: JSON.stringify({
-          email: email,
-          fullname: fullname,
-          subject: subject,
-          message: message,
-        }),
+      const res = await fetch('/api/email', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        method: 'POST',
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          subject: values.subject,
+          message: values.message,
+        }),
       });
-
       const { error } = await res.json();
+
       if (error) {
         console.log(error);
+        setValues({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
         setShowSuccessMessage(false);
         setShowFailureMessage(true);
         setButtonText('Send');
 
-        //Reset form fields
-        setFullname('');
-        setEmail('');
-        setMessage('');
-        setSubject('');
         return;
       }
-
-      setShowSuccessMessage(true);
-      setShowFailureMessage(false);
-      setButtonText('Send');
-
-      //Reset form fields
-      setFullname('');
-      setEmail('');
-      setMessage('');
-      setSubject('');
     }
-    console.log(fullname, email, subject, message);
+
+    setValues({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+    setShowSuccessMessage(true);
+    setShowFailureMessage(false);
+    setButtonText('Send');
   };
 
   // Page title
@@ -122,7 +123,7 @@ export default function Contact({ inView }) {
     >
       <motion.form
         onSubmit={handleSubmit}
-        className="shadow-xl flex flex-col px-8 py-8 lg:w-3/4 lg:ml-auto lg:mr-auto"
+        className="shadow-xl flex flex-col px-8 py-8 lg:w-3/4 lg:ml-auto lg:mr-auto text-zinc-500 dark:text-zinc-500"
         ref={labelRef}
         initial="hidden"
         animate={labelCtrls}
@@ -132,7 +133,7 @@ export default function Contact({ inView }) {
           className="font-monoton text-3xl p-4 text-center"
         />
         <motion.label
-          htmlFor="fullname"
+          htmlFor="name"
           className="text-gray-200 font-light mt-8 dark:text-gray-50"
           variants={labelVars}
         >
@@ -140,17 +141,15 @@ export default function Contact({ inView }) {
         </motion.label>
         <motion.input
           type="text"
-          value={fullname}
-          onChange={(e) => {
-            setFullname(e.target.value);
-          }}
-          name="fullname"
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          name="name"
+          id="name"
+          value={values.name}
+          onChange={handleChange}
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light"
           variants={inputVars}
+          autoComplete="given-name"
         />
-        {errors?.fullname && (
-          <p className="text-yellow-600">Name cannot be empty.</p>
-        )}
+        {errors?.name && <p className="text-yellow-600">{errors.name}</p>}
 
         <motion.label
           htmlFor="email"
@@ -162,16 +161,14 @@ export default function Contact({ inView }) {
         <motion.input
           type="email"
           name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          id="email"
+          value={values.email}
+          onChange={handleChange}
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light"
           variants={inputVars}
+          autoComplete="off"
         />
-        {errors?.email && (
-          <p className="text-yellow-600">Email cannot be empty.</p>
-        )}
+        {errors?.email && <p className="text-yellow-600">{errors.email}</p>}
 
         <motion.label
           htmlFor="subject"
@@ -183,16 +180,14 @@ export default function Contact({ inView }) {
         <motion.input
           type="text"
           name="subject"
-          value={subject}
-          onChange={(e) => {
-            setSubject(e.target.value);
-          }}
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          id="subject"
+          value={values.subject}
+          onChange={handleChange}
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light"
           variants={inputVars}
         />
-        {errors?.subject && (
-          <p className="text-yellow-600">Subject cannot be empty.</p>
-        )}
+        {errors?.subject && <p className="text-yellow-600">{errors.subject}</p>}
+
         <motion.label
           htmlFor="message"
           className="text-gray-200 font-light mt-4 dark:text-gray-50"
@@ -202,16 +197,14 @@ export default function Contact({ inView }) {
         </motion.label>
         <motion.textarea
           name="message"
-          value={message}
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-[#222]"
+          id="message"
+          value={values.message}
+          onChange={handleChange}
+          className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light"
           variants={inputVars}
         ></motion.textarea>
-        {errors?.message && (
-          <p className="text-yellow-600">Message body cannot be empty.</p>
-        )}
+        {errors?.message && <p className="text-yellow-600">{errors.message}</p>}
+
         <div className="flex flex-row items-center justify-start">
           <motion.button
             type="submit"
@@ -236,8 +229,8 @@ export default function Contact({ inView }) {
         </div>
         <div className="text-left">
           {showSuccessMessage && (
-            <p className="text-green-500 font-semibold text-sm my-2">
-              Thankyou! Your Message has been delivered.
+            <p className="text-green-500 font-semibold text-sm mt-4">
+              Your Message has been delivered successfully.
             </p>
           )}
           {showFailureMessage && (
