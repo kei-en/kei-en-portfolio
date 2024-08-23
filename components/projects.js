@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-import { projectQuery } from '../data';
 
 import Title from './sections/Title';
 import { CardBody, CardContainer, CardItem } from './sections/3dCard';
@@ -15,6 +13,7 @@ function Projects({
   inView,
   offset = CARD_OFFSET,
   scaleFactor = SCALE_FACTOR,
+  projectQuery,
 }) {
   const router = useRouter();
 
@@ -54,7 +53,7 @@ function Projects({
           scale: 1 - currentIndex * scaleFactor,
           zIndex: cards.length - currentIndex,
         }}
-        onClick={() => router.push(`/projects/${cards[currentIndex].project}`)}
+        onClick={() => router.push(`/projects/${cards[currentIndex].slug}`)}
       >
         <SingleProject currentProject={cards[currentIndex]} />
       </motion.div>
@@ -86,14 +85,14 @@ export function SingleProject({ currentProject }) {
           translateZ="50"
           className="text-xl font-bold text-white dark:text-white"
         >
-          {currentProject.data.name}
+          {currentProject.name}
         </CardItem>
         <CardItem
           as="p"
           translateZ="60"
           className="text-neutral-200 text-xs md:text-sm max-w-sm mt-2 dark:text-neutral-300 "
         >
-          {currentProject.data.intro}
+          {currentProject.description}
         </CardItem>
         <CardItem
           translateZ="100"
@@ -102,11 +101,11 @@ export function SingleProject({ currentProject }) {
           className="w-full mt-4"
         >
           <Image
-            src={currentProject.data.meta_image}
+            src={currentProject.image}
             height="768"
             width="1080"
             className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-            alt={currentProject.data.name}
+            alt={currentProject.name}
             priority
           />
         </CardItem>
