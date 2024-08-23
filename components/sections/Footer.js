@@ -21,7 +21,12 @@ export default function Footer() {
           variants={linkVars}
           className="uppercase underline underline-offset-2 hover:overline"
         >
-          <a href="#">Resume/CV</a>
+          <a
+            href="https://drive.google.com/file/d/1hFJiULLMTIArtY4h8okWtDNZcqiy-ceb/view?usp=sharing"
+            target="_blank"
+          >
+            Resume/CV
+          </a>
         </motion.li>
         <motion.li
           ref={linkRef}
@@ -30,7 +35,9 @@ export default function Footer() {
           variants={linkVars}
           className="uppercase underline underline-offset-2 hover:overline"
         >
-          <a href="https://github.com/kei-en">Github</a>
+          <a href="https://github.com/kei-en" target="_blank">
+            Github
+          </a>
         </motion.li>
         <motion.li
           ref={linkRef}
@@ -39,7 +46,9 @@ export default function Footer() {
           variants={linkVars}
           className="uppercase underline underline-offset-2 hover:overline"
         >
-          <a href="https://linkedin.com/in/kei-en">Linkedin</a>
+          <a href="https://linkedin.com/in/kei-en" target="_blank">
+            Linkedin
+          </a>
         </motion.li>
       </ul>
     </div>
