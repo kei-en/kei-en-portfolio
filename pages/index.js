@@ -7,15 +7,39 @@ import Intro from '../components/intro';
 import Projects from '../components/projects';
 import { InView } from 'react-intersection-observer';
 
-export default function Home() {
+export async function getStaticProps() {
+  const dataLink = process.env.OVERVIEW_JSON;
+
+  try {
+    const homePageData = await fetch(dataLink).then((response) => {
+      return response.json();
+    });
+    return {
+      props: {
+        pageData: homePageData.props.pageProps.pageData,
+        pageContent: homePageData.props.pageProps.pageContent,
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
+
+  return {
+    props: {
+      pageData: null,
+      error: error.message,
+    },
+  };
+}
+
+export default function Home({ pageData, pageContent }) {
   return (
     <div className={'w-full'}>
       <Head>
-        <title>Kei eN</title>
-        <meta
-          name="description"
-          content="Portfolio website for Karanja J. Njuguna"
-        />
+        <title>{pageData.meta_title}</title>
+        <meta name="description" content={pageData.meta_description} />
+        <meta name="og:title" content={pageData.meta_title} key="ogtitle" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -44,7 +68,11 @@ export default function Home() {
           >
             <Intro key="intro" inView={inView} />
             <About key="about" inView={inView} />
-            <Projects key="projects" inView={inView} />
+            <Projects
+              key="projects"
+              inView={inView}
+              projectQuery={pageContent[1].projects_list}
+            />
             <Contact key="contact" inView={inView} />
           </main>
         )}
