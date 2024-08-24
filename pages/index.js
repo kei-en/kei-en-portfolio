@@ -7,11 +7,11 @@ import Intro from '../components/intro';
 import Projects from '../components/projects';
 import { InView } from 'react-intersection-observer';
 
-export async function getStaticProps() {
-  const dataLink = process.env.OVERVIEW_JSON;
+const pageLink = process.env.OVERVIEW_JSON;
 
+export async function getStaticProps() {
   try {
-    const homePageData = await fetch(dataLink).then((response) => {
+    const homePageData = await fetch(pageLink).then((response) => {
       return response.json();
     });
     return {
