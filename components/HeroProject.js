@@ -29,7 +29,7 @@ export default function HeroProject({ data }) {
   return (
     <section className="mb-40">
       <SiteGrid>
-        <HeroProjectTitle title={data.name} />
+        <HeroProjectTitle title={data.project} />
         <div className="flex flex-row-reverse col-span-full max-w-2xl md:col-[6/-1] lg:col-[10/-1]">
           <motion.p
             className="leading-relaxed"
@@ -47,15 +47,15 @@ export default function HeroProject({ data }) {
             animate={tagsCtrls}
             variants={tagsVars}
           >
-            {data.tags.map((tag, index) => {
+            {data.data.tags.map((tag, index) => {
               return (
                 <div
                   key={index}
                   className={`leading-none mb-2 py-2 px-1 uppercase [writing-mode:vertical-rl] w-4 md:w-5 font-bold`}
                   style={{
-                    backgroundColor: data.custom_theme.text.hex,
+                    backgroundColor: data.data.custom_theme.text.hex,
                     opacity: 0.8,
-                    color: data.custom_theme.background.hex,
+                    color: data.data.custom_theme.background.hex,
                   }}
                 >
                   {tag.name}
