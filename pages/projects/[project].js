@@ -7,26 +7,65 @@ import ContentMapper from '../../components/ContentMapper';
 import Nav from '../../components/sections/Nav';
 import Contact from '../../components/contact';
 
+const pageLink = process.env.OVERVIEW_JSON;
+const dataLink = process.env.DATA_JSON;
+
 export async function getStaticPaths() {
+  try {
+    const data = await fetch(pageLink).then((response) => {
+      return response.json();
+    });
+    const slugs = data.props.pageProps.pageContent[1].projects_list;
+
+    return {
+      paths: slugs.map((slug) => ({
+        params: {
+          project: slug.slug,
+        },
+      })),
+      fallback: false,
+    };
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
+  }
+
   return {
-    paths: [
-      { params: { project: 'chartske' } },
-      { params: { project: 'muimbaji' } },
-    ],
+    ppaths: [],
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const project = projectQuery.find((item) => item.project === params.project);
+  try {
+    const response = await fetch(dataLink);
+    const projectQuery = await response.json();
 
-  return {
-    props: {
-      projectData: project.data,
-      projectContent: project.data.content,
-    },
-    revalidate: 1,
-  };
+    const project = projectQuery.projects.find(
+      (item) => item.project === params.project
+    );
+
+    if (!project) {
+      return {
+        notFound: true, // This will return a 404 page if the project is not found
+      };
+    }
+
+    return {
+      props: {
+        projectData: project,
+        projectContent: project.data.content,
+      },
+    };
+  } catch (error) {
+    console.error(`Error fetching project data: ${error.message}`);
+    return {
+      props: {
+        projectData: null,
+        // projectContent: null,
+        error: error.message || 'An unexpected error occurred.',
+      },
+    };
+  }
 }
 
 export default function ProjectPage({ projectData, projectContent }) {
@@ -47,7 +86,7 @@ export default function ProjectPage({ projectData, projectContent }) {
         />
         <meta
           property="og:site_name"
-          content="Karanja J Njuguna"
+          content="Karanja J. Njuguna"
           key="ogsitename"
         />
         <meta
@@ -59,8 +98,8 @@ export default function ProjectPage({ projectData, projectContent }) {
         <link rel="icon" href="/favicon.ico" key="" />
       </Head>
       <Layout
-        background={projectData.custom_theme.background.hex}
-        text={projectData.custom_theme.text.hex}
+        background={projectData.data.custom_theme.background.hex}
+        text={projectData.data.custom_theme.text.hex}
       >
         <Nav />
         <HeroProject data={projectData} />
