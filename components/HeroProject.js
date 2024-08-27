@@ -38,7 +38,7 @@ export default function HeroProject({ data }) {
             animate={introCtrls}
             variants={introVars}
           >
-            {data.intro}
+            {data.data.intro}
           </motion.p>
           <motion.div
             className="flex flex-col text-[0.5rem] mr-4 w-4 md:text-xs md:mr-7 md:w-5"
