@@ -123,7 +123,7 @@ export default function Contact({ inView }) {
     >
       <motion.form
         onSubmit={handleSubmit}
-        className="shadow-xl flex flex-col px-8 py-8 lg:w-3/4 lg:ml-auto lg:mr-auto text-zinc-500 dark:text-zinc-500"
+        className="shadow-xl flex flex-col px-8 py-8 lg:w-3/4 lg:ml-auto lg:mr-auto text-zinc-400 dark:text-zinc-400"
         ref={labelRef}
         initial="hidden"
         animate={labelCtrls}
