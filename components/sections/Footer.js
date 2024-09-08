@@ -22,7 +22,7 @@ export default function Footer() {
           className="uppercase underline underline-offset-2 hover:overline"
         >
           <a
-            href="https://drive.google.com/file/d/1hFJiULLMTIArtY4h8okWtDNZcqiy-ceb/view?usp=sharing"
+            href="https://drive.google.com/file/d/1Wpx9qGTjKvq3FoB7DJd4Ls3-TDzkDCjn/view?usp=sharing"
             target="_blank"
           >
             Resume/CV
