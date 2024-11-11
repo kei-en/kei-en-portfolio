@@ -1,3 +1,8 @@
+const colors = require('tailwindcss/colors');
+const {
+  default: flattenColorPalette,
+} = require('tailwindcss/lib/util/flattenColorPalette');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -9,6 +14,7 @@ module.exports = {
       fontFamily: {
         space_mono: ['Space Mono', 'monospace'],
         monoton: ['Monoton', 'cursive'],
+        la_belle_aurore: ['La Belle Aurore', 'cursive'],
       },
       colors: {
         purple: '#660066',
@@ -21,11 +27,21 @@ module.exports = {
         onPrimaryBg: 'var(--onPrimaryBg)',
         primaryBg: 'var(--primaryBg)',
         primary: 'var(--primary)',
-        // pageBg: 'var(--pageBg-hex)',
+      },
+      animation: {
+        scroll:
+          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
+      },
+      keyframes: {
+        scroll: {
+          to: {
+            transform: 'translate(calc(-50% - 0.5rem))',
+          },
+        },
       },
     },
   },
-  plugins: [dynamicBackground],
+  plugins: [dynamicBackground, addVariablesForColors],
 };
 
 function dynamicBackground({ addBase, addComponents, matchUtilities }) {
@@ -54,5 +70,16 @@ function dynamicBackground({ addBase, addComponents, matchUtilities }) {
     'stripes-color': (value) => ({
       '--stripes-rgb': value,
     }),
+  });
+}
+
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme('colors'));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ':root': newVars,
   });
 }
