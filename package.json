@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@next/font": "^13.0.0",
+    "@radix-ui/react-scroll-area": "^1.2.1",
     "@react-three/fiber": "^8.9.1",
     "@sendgrid/mail": "^7.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.0.0-rc19",
-    "framer-motion": "^7.6.17",
+    "framer-motion": "^11.12.0",
     "next": "12.3.1",
     "next-transpile-modules": "^10.0.0",
     "nodemailer": "^6.9.14",
@@ -25,7 +26,7 @@
     "react-scroll-parallax": "^3.4.5",
     "react-spring": "^9.6.1",
     "styled-components": "^6.1.8",
-    "tailwind-merge": "^2.3.0",
+    "tailwind-merge": "^2.5.5",
     "three": "^0.147.0",
     "typewriter-effect": "^2.21.0",
     "uuid": "^9.0.0"
@@ -43,10 +44,10 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "nprogress": "^0.2.0",
     "postcss": "^8.4.18",
     "prettier": "2.7.1",
-    "tailwindcss": "^3.2.1",
-    "nprogress": "^0.2.0"
+    "tailwindcss": "^3.2.1"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
