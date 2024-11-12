@@ -82,17 +82,16 @@ export default function Contact({ inView }) {
 
         return;
       }
+      setValues({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setShowSuccessMessage(true);
+      setShowFailureMessage(false);
+      setButtonText('Send');
     }
-
-    setValues({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-    });
-    setShowSuccessMessage(true);
-    setShowFailureMessage(false);
-    setButtonText('Send');
   };
 
   // Page title

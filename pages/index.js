@@ -3,9 +3,10 @@
 import Head from 'next/head';
 import About from '../components/about';
 import Contact from '../components/contact';
-import Intro from '../components/intro';
+// import Intro from '../components/intro';
 import Projects from '../components/projects';
 import { InView } from 'react-intersection-observer';
+import Intro from '../components/Intro';
 
 const pageLink = process.env.OVERVIEW_JSON;
 
@@ -23,14 +24,13 @@ export async function getStaticProps() {
     };
   } catch (error) {
     console.error(`Error: ${error.message}`);
+    return {
+      props: {
+        pageData: null,
+        error: error.message,
+      },
+    };
   }
-
-  return {
-    props: {
-      pageData: null,
-      error: error.message,
-    },
-  };
 }
 
 export default function Home({ pageData, pageContent }) {
@@ -66,13 +66,14 @@ export default function Home({ pageData, pageContent }) {
             ref={ref}
             className="font-space_mono bg-black text-white overscroll-y-auto overscroll-x-none"
           >
-            <Intro key="intro" inView={inView} />
-            <About key="about" inView={inView} />
+            {/* <Intro key="intro" inView={inView} /> */}
+            <Intro key="new-intro" inView={inView} />
             <Projects
               key="projects"
               inView={inView}
               projectQuery={pageContent[1].projects_list}
             />
+            <About key="about" inView={inView} />
             <Contact key="contact" inView={inView} />
           </main>
         )}
