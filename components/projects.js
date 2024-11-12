@@ -36,10 +36,10 @@ function Projects({
     <div
       layout="true"
       style={
-        inView ? { opacity: 1 } : { position: 'sticky', top: '10%', zIndex: 3 }
+        inView ? { opacity: 1 } : { position: 'sticky', top: '6%', zIndex: 2 }
       }
       className={
-        'relative h-[calc(100vh-7rem)] overflow-hidden bg-white dark:bg-white text-black w-[90%] m-auto mb-20 p-2 rounded-lg aspect-video'
+        'relative h-[calc(100vh-4rem)] overflow-hidden bg-white dark:bg-white text-black w-[94%] m-auto mb-20 p-2 rounded-lg aspect-video'
       }
     >
       <Title title={textHdr} />
