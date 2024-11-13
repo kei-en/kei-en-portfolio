@@ -106,6 +106,8 @@ export function SingleProject({ currentProject }) {
             width="1080"
             className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
             alt={currentProject.name}
+            placeholder="blur"
+            blurDataURL="media/chartske-hero.webp"
             priority
           />
         </CardItem>
