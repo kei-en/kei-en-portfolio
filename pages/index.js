@@ -37,9 +37,9 @@ export default function Home({ pageData, pageContent }) {
   return (
     <div className={'w-full'}>
       <Head>
-        <title>{pageData.meta_title}</title>
-        <meta name="description" content={pageData.meta_description} />
-        <meta name="og:title" content={pageData.meta_title} key="ogtitle" />
+        <title>{pageData?.meta_title}</title>
+        <meta name="description" content={pageData?.meta_description} />
+        <meta name="og:title" content={pageData?.meta_title} key="ogtitle" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
