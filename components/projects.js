@@ -53,7 +53,7 @@ function Projects({
           scale: 1 - currentIndex * scaleFactor,
           zIndex: cards.length - currentIndex,
         }}
-        onClick={() => router.push(`/projects/${cards[currentIndex].slug}`)}
+        onClick={() => router.push(`${cards[currentIndex].link}`)}
       >
         <SingleProject currentProject={cards[currentIndex]} />
       </motion.div>
