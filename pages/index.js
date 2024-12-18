@@ -68,8 +68,7 @@ export default function Home({ pageData, pageContent }) {
             ref={ref}
             className="font-space_mono bg-black text-white overscroll-y-auto overscroll-x-none"
           >
-            {/* <Intro key="intro" inView={inView} /> */}
-            <Intro key="new-intro" inView={inView} />
+            <Intro key="intro" inView={inView} />
             <Projects
               key="projects"
               inView={inView}
