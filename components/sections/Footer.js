@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <div className="p-2 lg:w-3/4 lg:ml-auto lg:mr-auto text-stone-300 dark:text-stone-300">
       <ul className="w-full inline-flex justify-around">
-        <motion.li
+        {/* <motion.li
           ref={linkRef}
           initial="hidden"
           animate={linkCtrls}
@@ -27,7 +27,7 @@ export default function Footer() {
           >
             Resume/CV
           </a>
-        </motion.li>
+        </motion.li> */}
         <motion.li
           ref={linkRef}
           initial="hidden"
