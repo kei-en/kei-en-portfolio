@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 import HeroProject from '../components/HeroProject';
 import ContentMapper from '../components/ContentMapper';
+import Contact from '../components/contact';
+import CallToAction from '../components/CallToAction';
 
 const pageLink = process.env.PORTFOLIO_JSON;
 
@@ -53,6 +55,14 @@ export default function Portfolio({ projectData }) {
       <Layout background="#F7F9FF" text="#000">
         <HeroProject data={projectData} />
         <ContentMapper sections={projectData.content} />
+        <CallToAction
+          internalType={null}
+          link=""
+          text="back to homepage"
+          type="internal"
+          className="p-10 ml-0 md:ml-4 lg:ml-20"
+        />
+        <Contact />
       </Layout>
     </>
   );
