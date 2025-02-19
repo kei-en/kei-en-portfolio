@@ -1,6 +1,13 @@
 import Link from 'next/link';
+import { cn } from '../utils/cn';
 
-export default function CallToAction({ internalType, link, text, type }) {
+export default function CallToAction({
+  internalType,
+  link,
+  text,
+  type,
+  className,
+}) {
   return (
     <>
       {type === 'internal' && (
@@ -15,7 +22,12 @@ export default function CallToAction({ internalType, link, text, type }) {
           passHref
           scroll={false}
         >
-          <a className="items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-[var(--ease-out)] hover:opacity-100">
+          <a
+            className={cn(
+              `items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-[var(--ease-out)] hover:opacity-100`,
+              className
+            )}
+          >
             {text}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +49,10 @@ export default function CallToAction({ internalType, link, text, type }) {
       )}
       {type === 'file' && (
         <a
-          className="items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-out hover:opacity-100"
+          className={cn(
+            `items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-out hover:opacity-100`,
+            className
+          )}
           href={link}
           rel="noopener noreferrer"
           target="_blank"
@@ -63,7 +78,10 @@ export default function CallToAction({ internalType, link, text, type }) {
       )}
       {type === 'external' && (
         <a
-          className="items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-out hover:opacity-100"
+          className={cn(
+            `items-center cursor-pointer flex mt-[var(--padding-sm)] opacity-50 transition-opacity duration-300 ease-out hover:opacity-100`,
+            className
+          )}
           href={link}
           rel="noopener noreferrer"
           target="_blank"
