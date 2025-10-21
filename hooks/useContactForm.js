@@ -3,6 +3,7 @@ import { useState } from 'react';
 const useContactForm = () => {
   const [values, setValues] = useState({
     name: '',
+    phone: '',
     email: '',
     subject: '',
     msg: '',

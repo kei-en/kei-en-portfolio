@@ -25,6 +25,10 @@ export default function Contact({ inView }) {
       isValid = false;
     }
 
+    if (values.phone) {
+      isValid = false;
+    }
+
     if (!values.email) {
       errors.email = 'Email is required!';
       isValid = false;
@@ -149,6 +153,8 @@ export default function Contact({ inView }) {
           autoComplete="given-name"
         />
         {errors?.name && <p className="text-yellow-600">{errors.name}</p>}
+
+        <input type="hidden" name="phone" value="" />
 
         <motion.label
           htmlFor="email"
