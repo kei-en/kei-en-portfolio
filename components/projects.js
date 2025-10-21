@@ -20,7 +20,7 @@ function Projects({
   const [cards, setCards] = useState(projectQuery || []);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const textHdr = 'Projects';
+  const textHdr = 'TEMPLATES';
 
   const flipCard = (direction) => {
     if (!cards.length) return; // Error handling for empty array
