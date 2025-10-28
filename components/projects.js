@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
@@ -43,20 +43,21 @@ function Projects({
       }
     >
       <Title title={textHdr} />
-      <motion.div
-        className="absolute dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mx-auto mt-24 md:mt-28 left-0 right-0 hover:cursor-pointer"
-        style={{
-          transformOrigin: 'top center',
-        }}
-        animate={{
-          top: currentIndex * -offset,
-          scale: 1 - currentIndex * scaleFactor,
-          zIndex: cards.length - currentIndex,
-        }}
-        onClick={() => router.push(`${cards[currentIndex].link}`)}
-      >
-        <SingleProject currentProject={cards[currentIndex]} />
-      </motion.div>
+      <a href={cards[currentIndex]?.link || '#'} target='_blank' rel="noopener noreferrer">
+        <motion.div
+          className="absolute dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mx-auto mt-24 md:mt-28 left-0 right-0 hover:cursor-pointer"
+          style={{
+            transformOrigin: 'top center',
+          }}
+          animate={{
+            top: currentIndex * -offset,
+            scale: 1 - currentIndex * scaleFactor,
+            zIndex: cards.length - currentIndex,
+          }}
+        >
+          <SingleProject currentProject={cards[currentIndex]} />
+        </motion.div>
+      </a>
       <div className="flex justify-between items-center absolute top-28 md:top-1/2 right-0 left-0 mx-auto w-full lg:md-1/2 z-50">
         <button
           className="px-4 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-50 dark:text-black text-black hover:bg-honey hover:underline text-sm font-bold"
