@@ -45,7 +45,7 @@ function Projects({
       <Title title={textHdr} />
       <a href={cards[currentIndex]?.link || '#'} target='_blank' rel="noopener noreferrer">
         <motion.div
-          className="absolute dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1]  shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mx-auto mt-24 md:mt-28 left-0 right-0 hover:cursor-pointer"
+          className="dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1] shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mt-24 md:mt-28 lg:mt-1 mx-auto hover:cursor-pointer"
           style={{
             transformOrigin: 'top center',
           }}
