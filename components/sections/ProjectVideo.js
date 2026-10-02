@@ -1,45 +1,10 @@
-import styled from 'styled-components';
+
 import { motion } from 'framer-motion';
 
 import useAnimateIn from '../../hooks/useAnimateIn';
 
 import SiteGrid from '../SiteGrid';
 import CallToAction from '../CallToAction';
-
-const VideoContainer = styled(motion.div)`
-  grid-column: 1 / -1;
-  height: 0;
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-
-  @media (min-width: 800px) {
-    grid-column: ${(props) => {
-      if (props.size === 'small') {
-        return '7 / -7';
-      } else if (props.size === 'medium') {
-        return '4 / -4';
-      }
-    }};
-  }
-`;
-
-const Caption = styled.div`
-  font-size: 0.9rem;
-  grid-column: 1 / -1;
-  line-height: 1.5;
-  margin: 0 auto 0 auto;
-  margin-top: ${(props) => props.theme.padding.md};
-  max-width: 30rem;
-  opacity: 0.5;
-  text-align: center;
-
-  @media (min-width: 800px) {
-    margin-left: ${(props) => (props.position === 'left' ? '0' : 'auto')};
-    margin-right: ${(props) => (props.position === 'right' ? '0' : 'auto')};
-    text-align: ${(props) => props.position};
-  }
-`;
 
 export default function ProjectVideo({ data }) {
   // Video animation
@@ -86,8 +51,8 @@ export default function ProjectVideo({ data }) {
                   data.include_cta === 'internal'
                     ? data.link_internal
                     : data.include_cta === 'file'
-                    ? data.link_file
-                    : data.link_external
+                      ? data.link_file
+                      : data.link_external
                 }
                 text={data.cta_text}
                 type={data.include_cta}
@@ -159,8 +124,8 @@ export default function ProjectVideo({ data }) {
                   data.include_cta === 'internal'
                     ? data.link_internal
                     : data.include_cta === 'file'
-                    ? data.link_file
-                    : data.link_external
+                      ? data.link_file
+                      : data.link_external
                 }
                 text={data.cta_text}
                 type={data.include_cta}
