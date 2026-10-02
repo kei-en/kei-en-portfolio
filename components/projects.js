@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 import Title from './sections/Title';
@@ -20,7 +21,7 @@ function Projects({
   const [cards, setCards] = useState(projectQuery || []);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const textHdr = 'TEMPLATES';
+  const textHdr = 'PROJECTS';
 
   const flipCard = (direction) => {
     if (!cards.length) return; // Error handling for empty array
@@ -43,7 +44,7 @@ function Projects({
       }
     >
       <Title title={textHdr} />
-      <a href={cards[currentIndex]?.link || '#'} target='_blank' rel="noopener noreferrer">
+      <Link href={`/projects/${cards[currentIndex]?.slug}`}>
         <motion.div
           className="dark:bg-zinc-900 bg-zinc-800 h-60 w-60 md:h-60 md:w-96 rounded-2xl p-4 shadow-xl border border-neutral-200 dark:border-white/[0.1] shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between mt-24 md:mt-28 lg:mt-1 mx-auto hover:cursor-pointer"
           style={{
@@ -57,7 +58,7 @@ function Projects({
         >
           <SingleProject currentProject={cards[currentIndex]} />
         </motion.div>
-      </a>
+      </Link>
       <div className="flex justify-between items-center absolute top-28 md:top-1/2 right-0 left-0 mx-auto w-full lg:md-1/2 z-50">
         <button
           className="px-4 py-2 rounded-xl bg-zinc-50 dark:bg-zinc-50 dark:text-black text-black hover:bg-honey hover:underline text-sm font-bold"
@@ -107,8 +108,6 @@ export function SingleProject({ currentProject }) {
             width="1080"
             className="h-48 w-full object-cover rounded-xl group-hover/card:shadow-xl"
             alt={currentProject.name}
-            placeholder="blur"
-            blurDataURL="media/chartske-hero.webp"
             priority
           />
         </CardItem>
