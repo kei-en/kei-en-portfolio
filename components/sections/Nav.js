@@ -52,9 +52,8 @@ export default function Nav() {
         </button>
       </div>
       <div
-        className={`${
-          active ? '' : 'hidden'
-        } absolute right-0 left-0 top-2/3 m-6 bg-white/95 text-black p-4 rounded-md`}
+        className={`${active ? '' : 'hidden'
+          } absolute right-0 left-0 top-2/3 m-6 bg-white/95 text-black p-4 rounded-md`}
       >
         <Link href="/">
           <p className="flex cursor-pointer hover:underline py-1">
@@ -69,11 +68,23 @@ export default function Nav() {
           </p>
           <ul className="ml-8">
             <li
-              className={`${
-                router.pathname === '/projects/chartske'
+              className={`${router.pathname === '/projects/bhc'
                   ? 'underline italic'
                   : ''
-              } hover:underline cursor-pointer py-1`}
+                } hover:underline cursor-pointer py-1`}
+            >
+              <Link href="/projects/bhc">
+                <p className="flex">
+                  <FaRegFile />
+                  &nbsp;bricolage human capital
+                </p>
+              </Link>
+            </li>
+            <li
+              className={`${router.pathname === '/projects/chartske'
+                  ? 'underline italic'
+                  : ''
+                } hover:underline cursor-pointer py-1`}
             >
               <Link href="/projects/chartske">
                 <p className="flex">
@@ -83,16 +94,15 @@ export default function Nav() {
               </Link>
             </li>
             <li
-              className={`${
-                router.pathname === '/projects/muimbaji'
+              className={`${router.pathname === '/projects/websurfer'
                   ? 'underline italic'
                   : ''
-              } hover:underline cursor-pointer py-1`}
+                } hover:underline cursor-pointer py-1`}
             >
-              <Link href="/projects/muimbaji">
+              <Link href="/projects/websurfer">
                 <p className="flex">
                   <FaRegFile />
-                  &nbsp;muimbaji
+                  &nbsp;websurfer
                 </p>
               </Link>
             </li>
