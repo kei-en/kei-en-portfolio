@@ -32,7 +32,7 @@ export default function ProjectProcessWork({ data }) {
       <SiteGrid>
         <div className="[grid-column:4_/_-4] max-w-2xl mb-[var(--padding-lg)]">
           <h2 className="text-3xl font-semibold tracking-tighter mb-[0.5em] md:text-4xl lg:text-5xl">
-            Process Work
+            What I did
           </h2>
           <p className="leading-relaxed">
             Explore process work for this project.
@@ -92,8 +92,8 @@ export default function ProjectProcessWork({ data }) {
                               item.include_cta === 'internal'
                                 ? item.link_internal
                                 : item.include_cta === 'file'
-                                ? item.link_file
-                                : item.link_external
+                                  ? item.link_file
+                                  : item.link_external
                             }
                             text={item.cta_text}
                             type={item.include_cta}
